@@ -1,0 +1,66 @@
+[
+  {
+    "_id": 1,
+    "title": "Fluid Flush and Fills",
+    "description": "Fluid flush and fill service for your vehicle",
+    "price": 50.0,
+    "img": "https://i.ibb.co/SyKS34D/1.jpg",
+    "service_area": "United States"
+  },
+  {
+    "_id": 2,
+    "title": "Battery Servicing",
+    "description": "Battery maintenance and servicing",
+    "price": 30.0,
+    "img": "https://i.ibb.co/XL1H1V2/2.jpg",
+    "service_area": "Australia"
+  },
+  {
+    "_id": 3,
+    "title": "Oil Changes",
+    "description": "Regular oil change service",
+    "price": 40.0,
+    "img": "https://i.ibb.co/MSSC8yL/3.jpg",
+    "service_area": "Germany"
+  },
+  {
+    "_id": 4,
+    "title": "Engine Lights",
+    "description": "Diagnostic and repair of engine lights issues",
+    "price": 60.0,
+    "img": "https://i.ibb.co/DrMc9DZ/4.jpg",
+    "service_area": "Japan"
+  },
+  {
+    "_id": 5,
+    "title": "Automotive Filters",
+    "description": "Replacement of automotive filters",
+    "price": 25.0,
+    "img": "https://i.ibb.co/RpHmXsw/5.jpg",
+    "service_area": "Brazil"
+  },
+  {
+    "_id": 6,
+    "title": "Complete Bike Repairing or Engine Replacement",
+    "description": "Comprehensive bike repair services, including engine replacement if needed",
+    "price": 150.0,
+    "img": "https://i.ibb.co/SyKS34D/1.jpg",
+    "service_area": "South Africa"
+  },
+  {
+    "_id": 7,
+    "title": "Wheel Alignment",
+    "description": "Professional wheel alignment service",
+    "price": 55.0,
+    "img": "https://i.ibb.co/MSSC8yL/3.jpg",
+    "service_area": "Italy"
+  },
+  {
+    "_id": 8,
+    "title": "Brake Fluid Exchange",
+    "description": "Brake fluid exchange for your vehicle",
+    "price": 45.0,
+    "img": "https://i.ibb.co/XL1H1V2/2.jpg",
+    "service_area": "Russia"
+  }
+]
