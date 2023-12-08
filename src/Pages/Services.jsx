@@ -1,4 +1,3 @@
-import React from "react";
 import useService from "../useServiceHook/useService";
 
 const Services = () => {

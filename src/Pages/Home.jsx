@@ -1,3 +1,4 @@
+import Contact from "../Componants/Contact";
 import HomeSwiper from "../Componants/HomeSwiper";
 import Service from "../Componants/Service";
 import Slider from "../Componants/Slider";
@@ -5,7 +6,7 @@ import useService from "../useServiceHook/useService";
 
 const Home = () => {
   const [service] = useService();
-  console.log(service);
+
   return (
     <div>
       <Slider></Slider>
@@ -19,6 +20,7 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <Contact></Contact>
       <div className="">
         <HomeSwiper></HomeSwiper>
       </div>

@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Services from "../Pages/Services";
+import SingleService from "../Pages/SingleService";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "services",
         element: <Services></Services>,
+      },
+      {
+        path: "SingleServices/:id",
+        element: <SingleService></SingleService>,
       },
     ],
   },

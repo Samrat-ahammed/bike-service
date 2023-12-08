@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 const Service = ({ item }) => {
-  const { title, description, price, img, service_area } = item || {};
+  const { _id, title, description, price, img, service_area } = item || {};
   return (
     <div className="flex mx-auto justify-center items-center w-full">
       <div className="max-w-xs rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
@@ -20,12 +22,13 @@ const Service = ({ item }) => {
               Curabitur luctus erat nunc, sed ullamcorper erat vestibulum eget.
             </p>
           </div>
-          <button
+          <Link
+            to={`/SingleServices/${_id}`}
             type="button"
-            className="px-8 py-3 font-semibold rounded-full bg-rose-300 dark:text-gray-800"
+            className="px-8 py-3 font-semibold rounded-full bg-rose-300 dark:text-gray-800 text-center"
           >
             Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>
