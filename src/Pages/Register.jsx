@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -10,7 +14,25 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    const { email, password } = data;
+
+    // Check if the password meets the minimum length requirement
+    if (password.length < 6) {
+      // Handle the error, for example, show a message to the user
+      console.error("Password should be at least 6 characters.");
+      return;
+    }
+
+    createUser(email, password).then((result) => {
+      console.log(result.user);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
   };
   return (
     <div className="bg-teal-100 mx-auto items-center flex justify-center mt-14">

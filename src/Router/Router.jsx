@@ -12,6 +12,7 @@ import UpdateService from "../Pages/Dashboard/UpdateService";
 import ManageServices from "../Pages/Dashboard/ManageServices";
 import Profile from "../Pages/Dashboard/Profile";
 import ManageUser from "../Pages/Dashboard/ManageUser";
+import State from "../Pages/Dashboard/State";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,7 @@ export const router = createBrowserRouter([
       { path: "manageServices", element: <ManageServices /> },
       { path: "profile", element: <Profile /> },
       { path: "manageUser", element: <ManageUser></ManageUser> },
+      { path: "state", element: <State /> },
     ],
   },
 ]);

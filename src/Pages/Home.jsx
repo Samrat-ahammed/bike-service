@@ -1,11 +1,9 @@
-import { useLoaderData } from "react-router-dom";
 import Contact from "../Componants/Contact";
 import HomeSwiper from "../Componants/HomeSwiper";
 import Service from "../Componants/Service";
 import Slider from "../Componants/Slider";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../useServiceHook/useAxiosPublic";
-
 const Home = () => {
   const [service, setService] = useState();
   const axiosPublic = useAxiosPublic();

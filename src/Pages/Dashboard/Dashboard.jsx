@@ -11,6 +11,24 @@ const Dashboard = () => {
           <div className="container flex justify-between mx-auto">
             <ul className="items-stretch hidden space-x-3 lg:flex mx-auto text-center">
               <NavLink
+                to={"/"}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-purple-300 text-xl p-2 rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+                    : "bg-white text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+                }
+              >
+                <li className="flex">
+                  <a
+                    rel="noopener noreferrer"
+                    href="#"
+                    className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
+                  >
+                    Home
+                  </a>
+                </li>
+              </NavLink>
+              <NavLink
                 to={"/dashboard/addService"}
                 className={({ isActive }) =>
                   isActive
@@ -80,6 +98,24 @@ const Dashboard = () => {
                     className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
                   >
                     My-Profile
+                  </a>
+                </li>
+              </NavLink>
+              <NavLink
+                to={"/dashboard/state"}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-purple-300 text-xl p-2 rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+                    : "bg-white text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+                }
+              >
+                <li className="flex">
+                  <a
+                    rel="noopener noreferrer"
+                    href="#"
+                    className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
+                  >
+                    State
                   </a>
                 </li>
               </NavLink>
