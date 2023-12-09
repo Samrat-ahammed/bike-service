@@ -1,10 +1,17 @@
-import useService from "../useServiceHook/useService";
+import { useEffect, useState } from "react";
+import useAxiosPublic from "../useServiceHook/useAxiosPublic";
 
 const Services = () => {
-  const [service] = useService();
+  const [service, setService] = useState();
+  const axiosPublic = useAxiosPublic();
+
+  useEffect(() => {
+    axiosPublic.get("/service").then((res) => setService(res.data));
+  }, [axiosPublic]);
+
   return (
     <div className="grid grid-cols-4 gap-4">
-      {service.map((item) => (
+      {service?.map((item) => (
         <div
           key={item._id}
           className="rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100"

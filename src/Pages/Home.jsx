@@ -1,11 +1,18 @@
+import { useLoaderData } from "react-router-dom";
 import Contact from "../Componants/Contact";
 import HomeSwiper from "../Componants/HomeSwiper";
 import Service from "../Componants/Service";
 import Slider from "../Componants/Slider";
-import useService from "../useServiceHook/useService";
+import { useEffect, useState } from "react";
+import useAxiosPublic from "../useServiceHook/useAxiosPublic";
 
 const Home = () => {
-  const [service] = useService();
+  const [service, setService] = useState();
+  const axiosPublic = useAxiosPublic();
+
+  useEffect(() => {
+    axiosPublic.get("/service").then((res) => setService(res.data));
+  }, [axiosPublic]);
 
   return (
     <div>
@@ -15,7 +22,7 @@ const Home = () => {
           Our Services
         </h1>
         <div className="grid grid-cols-3 gap-5">
-          {service.map((item) => (
+          {service?.map((item) => (
             <Service key={item._id} item={item}></Service>
           ))}
         </div>

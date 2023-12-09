@@ -24,6 +24,26 @@ const Navbar = () => {
       >
         All Services
       </NavLink>
+      <NavLink
+        to="/mySchedule"
+        className={({ isActive }) =>
+          isActive
+            ? "bg-purple-300 text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+            : "bg-white text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+        }
+      >
+        My-Schedule
+      </NavLink>
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          isActive
+            ? "bg-purple-300 text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+            : "bg-white text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+        }
+      >
+        Dashboard
+      </NavLink>
     </>
   );
 
