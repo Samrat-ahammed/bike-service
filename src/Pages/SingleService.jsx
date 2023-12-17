@@ -1,16 +1,42 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../useServiceHook/useAxiosPublic";
+import useAxiosSecure from "../useServiceHook/useAxiosSecure";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SingleService = () => {
   const { id } = useParams();
-  console.log(id);
+  const { user } = useContext(AuthContext);
+
   const axiosPublic = useAxiosPublic();
   const [service, setService] = useState({});
-
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
     axiosPublic.get(`/singleService/${id}`).then((res) => setService(res.data));
   }, [axiosPublic, id]);
+
+  const handleBooking = () => {
+    const cartInfo = {
+      email: user?.email,
+      title: service.title,
+      description: service.description,
+      price: service.price,
+      img: service.img,
+      service_area: service.service_area,
+    };
+
+    axiosSecure.post("/cart", cartInfo).then((res) => {
+      console.log(res.data);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Add to Cart${service.title}`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
+  };
 
   return (
     <div>
@@ -45,6 +71,7 @@ const SingleService = () => {
               </p>
             </div>
             <button
+              onClick={handleBooking}
               type="button"
               className="px-8 py-3 font-semibold rounded bg-lightBlue-800 text-white"
             >
