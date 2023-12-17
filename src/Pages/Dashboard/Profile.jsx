@@ -5,7 +5,7 @@ import useAxiosSecure from "../../useServiceHook/useAxiosSecure";
 
 const Profile = () => {
   const axiosPublic = useAxiosSecure();
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext) || {};
   const { logout } = useContext(AuthContext);
   const [singleUser, setSingleUser] = useState({});
 
@@ -15,17 +15,23 @@ const Profile = () => {
       .then((res) => setSingleUser(res.data));
   }, [axiosPublic, user]);
 
-  const handleLogout = () => {
-    logout().then(() =>
+  const handleLogout = async () => {
+    try {
+      await logout();
+      // Additional actions after successful logout
       Swal.fire({
         position: "top-end",
         icon: "success",
         title: "Log-Out successfully",
         showConfirmButton: false,
         timer: 1500,
-      })
-    );
+      });
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Handle error (e.g., display an error message)
+    }
   };
+
   return (
     <div className="bg-rose-200 p-6">
       {/* <div className="">
@@ -118,12 +124,14 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <h2
-        onClick={handleLogout}
-        className="bg-purple-950 p-2 rounded-lg mt-5 text-white font-bold"
-      >
-        Logout
-      </h2>
+      {user?.email && (
+        <h2
+          onClick={handleLogout}
+          className="bg-purple-950 p-2 rounded-lg mt-5 text-white font-bold"
+        >
+          Logout
+        </h2>
+      )}
     </div>
   );
 };

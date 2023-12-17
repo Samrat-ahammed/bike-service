@@ -1,6 +1,20 @@
+import { useContext, useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import useAxiosSecure from "../../useServiceHook/useAxiosSecure";
 
 const Dashboard = () => {
+  const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
+  const [isAdmin, setAdmin] = useState();
+  useEffect(() => {
+    axiosSecure
+      .get(`http://localhost:5000/user/admin/${user?.email}`)
+      .then((res) => {
+        setAdmin(res.data);
+        console.log(res.data);
+      });
+  }, [axiosSecure, user]);
   return (
     <div>
       <div>
@@ -65,24 +79,26 @@ const Dashboard = () => {
                   </a>
                 </li>
               </NavLink>
-              <NavLink
-                to={"/dashboard/manageUser"}
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-purple-300 text-xl p-2 rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
-                    : "bg-white text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
-                }
-              >
-                <li className="flex">
-                  <a
-                    rel="noopener noreferrer"
-                    href="#"
-                    className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
-                  >
-                    Manage-User
-                  </a>
-                </li>
-              </NavLink>
+              {isAdmin === true && (
+                <NavLink
+                  to={"/dashboard/manageUser"}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-purple-300 text-xl p-2 rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+                      : "bg-white text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+                  }
+                >
+                  <li className="flex">
+                    <a
+                      rel="noopener noreferrer"
+                      href="#"
+                      className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
+                    >
+                      Manage-User
+                    </a>
+                  </li>
+                </NavLink>
+              )}
               <NavLink
                 to={"/dashboard/profile"}
                 className={({ isActive }) =>
@@ -101,24 +117,26 @@ const Dashboard = () => {
                   </a>
                 </li>
               </NavLink>
-              <NavLink
-                to={"/dashboard/state"}
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-purple-300 text-xl p-2 rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
-                    : "bg-white text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
-                }
-              >
-                <li className="flex">
-                  <a
-                    rel="noopener noreferrer"
-                    href="#"
-                    className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
-                  >
-                    State
-                  </a>
-                </li>
-              </NavLink>
+              {isAdmin == true && (
+                <NavLink
+                  to={"/dashboard/state"}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-purple-300 text-xl p-2 rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+                      : "bg-white text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
+                  }
+                >
+                  <li className="flex">
+                    <a
+                      rel="noopener noreferrer"
+                      href="#"
+                      className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400"
+                    >
+                      State
+                    </a>
+                  </li>
+                </NavLink>
+              )}
             </ul>
           </div>
         </header>

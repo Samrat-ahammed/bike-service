@@ -44,7 +44,7 @@ const ManageUser = () => {
                   onClick={() => handleAdminRole(item._id)}
                   className="bg-blue-600 rounded-lg p-2 text-white font-semibold"
                 >
-                  {item?.role ? "Admin" : "User"}
+                  {item?.role == "admin" ? "Admin" : "User"}
                 </button>
               </td>
               <td className="p-3">

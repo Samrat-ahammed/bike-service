@@ -9,7 +9,6 @@ const MySchedule = () => {
 
   useEffect(() => {
     axiosSecure.get(`http://localhost:5000/cart/${user?.email}`).then((res) => {
-      console.log(res.data);
       setCartService(res.data);
     });
   }, [axiosSecure, user]);
