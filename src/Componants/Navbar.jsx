@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import navLogo from "../assets/navLogo.jpg";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+
   const navLink = (
     <>
       <NavLink
@@ -35,7 +39,7 @@ const Navbar = () => {
         My-Schedule
       </NavLink>
       <NavLink
-        to="/dashboard"
+        to="/dashboard/profile"
         className={({ isActive }) =>
           isActive
             ? "bg-purple-300 text-xl rounded-lg font-semibold text-black items-center text-center flex justify-center px-4"
@@ -73,14 +77,31 @@ const Navbar = () => {
               {navLink}
             </ul>
           </div>
-          <div className="items-center flex-shrink-0 hidden lg:flex">
-            <Link
-              to={"/login"}
-              className="px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900"
-            >
-              Log in
-            </Link>
-          </div>
+          {user ? (
+            <div className="flex flex-col items-center justify-center">
+              <div className="flex space-x-5">
+                <div className="relative">
+                  <img
+                    alt=""
+                    className="w-12 h-12 rounded-full ri ri dark:bg-gray-500 ri ri"
+                    src={user.photoURL}
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 text-black text-center font-semibold opacity-0 hover:opacity-100 py-2 rounded-md">
+                    {user.displayName}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="items-center flex-shrink-0 hidden lg:flex">
+              <Link
+                to={"/login"}
+                className="px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900"
+              >
+                Log in
+              </Link>
+            </div>
+          )}
           <button className="p-4 lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,40 @@
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const from = e.target;
+    const email = from.email.value;
+    const password = from.password.value;
+
+    login(email, password)
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User Login successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${err}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
   return (
     <div className="bg-teal-100 mx-auto items-center flex justify-center mt-14">
       <Helmet>
@@ -22,13 +55,18 @@ const Login = () => {
               performed on motorcycles to ensure they remain in good working
               condition.
             </p>
-            <form action="" className="self-stretch space-y-3 mb-10">
+            <form
+              onSubmit={handleLogin}
+              action=""
+              className="self-stretch space-y-3 mb-10"
+            >
               <label className="text-2xl font-bold text-slate-400">
                 Login Now !
               </label>
               <div>
                 <label className="text-sm sr-only">Email address</label>
                 <input
+                  name="email"
                   id="lastName"
                   type="text"
                   placeholder="Email address"
@@ -38,18 +76,18 @@ const Login = () => {
               <div>
                 <label className="text-sm sr-only">Your Password</label>
                 <input
+                  name="password"
                   id="Password"
                   type="text"
                   placeholder="Password"
                   className="w-full px-6 h-14 rounded-md focus:ring focus:ri dark:border-gray-700"
                 />
               </div>
-              <button
-                type="button"
+              <input
+                type="submit"
+                value="Login"
                 className="px-8 bg-blue-400 py-3 font-semibold rounded-lg dark:bg-gray-100 dark:text-gray-800"
-              >
-                Login
-              </button>
+              />
             </form>
             <label className="mt-10 text-xl font-semibold">
               New Here? Please-

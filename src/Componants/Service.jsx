@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Service = ({ item }) => {
-  const { _id, title, price, img } = item || {};
+  const { _id, title, price, img, description } = item || {};
   return (
     <div className="flex mx-auto justify-center items-center w-full">
       <div className="max-w-xs rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
@@ -18,9 +18,7 @@ const Service = ({ item }) => {
         <div className="flex flex-col justify-between p-6 space-y-8">
           <div className="space-y-2">
             <h2 className="text-xl font-semibold tracki">{title}</h2>
-            <p className="dark:text-gray-100">
-              Curabitur luctus erat nunc, sed ullamcorper erat vestibulum eget.
-            </p>
+            <p className="dark:text-gray-100">{description}</p>
           </div>
           <Link
             to={`/SingleServices/${_id}`}

@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [
       { path: "addService", element: <AddService></AddService> },
-      { path: "updateService", element: <UpdateService></UpdateService> },
+      { path: "updateService/:id", element: <UpdateService></UpdateService> },
       { path: "manageServices", element: <ManageServices /> },
       { path: "profile", element: <Profile /> },
       { path: "manageUser", element: <ManageUser></ManageUser> },

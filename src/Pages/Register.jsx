@@ -4,9 +4,13 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../useServiceHook/useAxiosPublic";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+
+  const axiosPublic = useAxiosPublic();
+
   const {
     register,
     handleSubmit,
@@ -23,16 +27,37 @@ const Register = () => {
       return;
     }
 
-    createUser(email, password).then((result) => {
-      console.log(result.user);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Your work has been saved",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    });
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+        };
+        updateUserProfile(data.name, data.photoUrl).then(() => {
+          axiosPublic.post("/user", userInfo).then((res) => {
+            if (res.data?.insertedId) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+        });
+      })
+      .catch((err) =>
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: { err },
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      );
   };
   return (
     <div className="bg-teal-100 mx-auto items-center flex justify-center mt-14">
@@ -125,7 +150,7 @@ const Register = () => {
               <input
                 className="px-8 bg-blue-400 py-3 font-semibold rounded-lg dark:bg-gray-100 dark:text-gray-800"
                 type="submit"
-                value="Login"
+                value="Register"
               />
               {/* <button
                 type="button"

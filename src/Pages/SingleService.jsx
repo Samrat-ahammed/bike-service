@@ -44,6 +44,12 @@ const SingleService = () => {
                 {service.description}
               </p>
             </div>
+            <button
+              type="button"
+              className="px-8 py-3 font-semibold rounded bg-lightBlue-800 text-white"
+            >
+              Book Now
+            </button>
           </div>
         </div>
       </div>
